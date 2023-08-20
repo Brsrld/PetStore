@@ -7,10 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		555109392A926EA400972C1F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555109382A926EA400972C1F /* TabBarController.swift */; };
+		5551093E2A92705E00972C1F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5551093D2A92705E00972C1F /* HomeViewController.swift */; };
+		555109402A92706700972C1F /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5551093F2A92706700972C1F /* CartViewController.swift */; };
+		555109422A92707200972C1F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555109412A92707200972C1F /* ProfileViewController.swift */; };
+		555109442A92771600972C1F /* TabBarControllerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555109432A92771600972C1F /* TabBarControllerBuilder.swift */; };
+		555109462A927FB900972C1F /* ProfileViewControllerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555109452A927FB900972C1F /* ProfileViewControllerBuilder.swift */; };
+		555109482A927FE600972C1F /* CartViewControllerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555109472A927FE600972C1F /* CartViewControllerBuilder.swift */; };
+		5551094A2A92800200972C1F /* HomeViewControllerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555109492A92800200972C1F /* HomeViewControllerBuilder.swift */; };
+		5551094C2A9283D100972C1F /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5551094B2A9283D100972C1F /* HomeViewModel.swift */; };
+		5551094E2A9283DA00972C1F /* HomeViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5551094D2A9283DA00972C1F /* HomeViewState.swift */; };
+		555109502A92843B00972C1F /* HomeViewServiceable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5551094F2A92843B00972C1F /* HomeViewServiceable.swift */; };
 		55977B732A92154000F4A736 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55977B722A92154000F4A736 /* AppDelegate.swift */; };
 		55977B752A92154000F4A736 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55977B742A92154000F4A736 /* SceneDelegate.swift */; };
-		55977B772A92154000F4A736 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55977B762A92154000F4A736 /* ViewController.swift */; };
-		55977B7A2A92154000F4A736 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55977B782A92154000F4A736 /* Main.storyboard */; };
 		55977B7C2A92154100F4A736 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55977B7B2A92154100F4A736 /* Assets.xcassets */; };
 		55977B7F2A92154100F4A736 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55977B7D2A92154100F4A736 /* LaunchScreen.storyboard */; };
 		55977B892A9215CD00F4A736 /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55977B882A9215CD00F4A736 /* CoordinatorProtocol.swift */; };
@@ -26,11 +35,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		555109382A926EA400972C1F /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		5551093D2A92705E00972C1F /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		5551093F2A92706700972C1F /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
+		555109412A92707200972C1F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		555109432A92771600972C1F /* TabBarControllerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarControllerBuilder.swift; sourceTree = "<group>"; };
+		555109452A927FB900972C1F /* ProfileViewControllerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewControllerBuilder.swift; sourceTree = "<group>"; };
+		555109472A927FE600972C1F /* CartViewControllerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewControllerBuilder.swift; sourceTree = "<group>"; };
+		555109492A92800200972C1F /* HomeViewControllerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewControllerBuilder.swift; sourceTree = "<group>"; };
+		5551094B2A9283D100972C1F /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		5551094D2A9283DA00972C1F /* HomeViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewState.swift; sourceTree = "<group>"; };
+		5551094F2A92843B00972C1F /* HomeViewServiceable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewServiceable.swift; sourceTree = "<group>"; };
 		55977B6F2A92154000F4A736 /* PetStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55977B722A92154000F4A736 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		55977B742A92154000F4A736 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		55977B762A92154000F4A736 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		55977B792A92154000F4A736 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		55977B7B2A92154100F4A736 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		55977B7E2A92154100F4A736 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		55977B802A92154100F4A736 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -57,6 +75,63 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		555109352A926E5F00972C1F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				555109362A926E6400972C1F /* Screens */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		555109362A926E6400972C1F /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				5551093C2A92704800972C1F /* ProfileView */,
+				5551093B2A92704200972C1F /* CartView */,
+				5551093A2A92703C00972C1F /* HomeView */,
+				555109372A926E6800972C1F /* Tabbar */,
+			);
+			name = Screens;
+			sourceTree = "<group>";
+		};
+		555109372A926E6800972C1F /* Tabbar */ = {
+			isa = PBXGroup;
+			children = (
+				555109382A926EA400972C1F /* TabBarController.swift */,
+				555109432A92771600972C1F /* TabBarControllerBuilder.swift */,
+			);
+			name = Tabbar;
+			sourceTree = "<group>";
+		};
+		5551093A2A92703C00972C1F /* HomeView */ = {
+			isa = PBXGroup;
+			children = (
+				5551093D2A92705E00972C1F /* HomeViewController.swift */,
+				555109492A92800200972C1F /* HomeViewControllerBuilder.swift */,
+				5551094B2A9283D100972C1F /* HomeViewModel.swift */,
+				5551094D2A9283DA00972C1F /* HomeViewState.swift */,
+			);
+			name = HomeView;
+			sourceTree = "<group>";
+		};
+		5551093B2A92704200972C1F /* CartView */ = {
+			isa = PBXGroup;
+			children = (
+				5551093F2A92706700972C1F /* CartViewController.swift */,
+				555109472A927FE600972C1F /* CartViewControllerBuilder.swift */,
+			);
+			name = CartView;
+			sourceTree = "<group>";
+		};
+		5551093C2A92704800972C1F /* ProfileView */ = {
+			isa = PBXGroup;
+			children = (
+				555109412A92707200972C1F /* ProfileViewController.swift */,
+				555109452A927FB900972C1F /* ProfileViewControllerBuilder.swift */,
+			);
+			name = ProfileView;
+			sourceTree = "<group>";
+		};
 		55977B662A92154000F4A736 = {
 			isa = PBXGroup;
 			children = (
@@ -76,7 +151,7 @@
 		55977B712A92154000F4A736 /* PetStore */ = {
 			isa = PBXGroup;
 			children = (
-				55977BA02A92393700F4A736 /* Views */,
+				555109352A926E5F00972C1F /* Views */,
 				55977B9D2A9237EE00F4A736 /* Extesions */,
 				55977B8C2A9216AD00F4A736 /* Service */,
 				55977B872A9215B900F4A736 /* Coordinator */,
@@ -132,21 +207,6 @@
 			name = Extesions;
 			sourceTree = "<group>";
 		};
-		55977BA02A92393700F4A736 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				55977BA12A92393C00F4A736 /* Screens */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		55977BA12A92393C00F4A736 /* Screens */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Screens;
-			sourceTree = "<group>";
-		};
 		55977BA62A92478200F4A736 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -159,6 +219,7 @@
 		55977BAB2A9247BB00F4A736 /* Serviceables */ = {
 			isa = PBXGroup;
 			children = (
+				5551094F2A92843B00972C1F /* HomeViewServiceable.swift */,
 			);
 			name = Serviceables;
 			sourceTree = "<group>";
@@ -176,8 +237,6 @@
 			children = (
 				55977B722A92154000F4A736 /* AppDelegate.swift */,
 				55977B742A92154000F4A736 /* SceneDelegate.swift */,
-				55977B762A92154000F4A736 /* ViewController.swift */,
-				55977B782A92154000F4A736 /* Main.storyboard */,
 				55977B7D2A92154100F4A736 /* LaunchScreen.storyboard */,
 			);
 			name = Core;
@@ -258,7 +317,6 @@
 			files = (
 				55977B7F2A92154100F4A736 /* LaunchScreen.storyboard in Resources */,
 				55977B7C2A92154100F4A736 /* Assets.xcassets in Resources */,
-				55977B7A2A92154000F4A736 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,12 +327,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				555109402A92706700972C1F /* CartViewController.swift in Sources */,
 				55977B912A9216F600F4A736 /* Endpoint.swift in Sources */,
 				55977BB42A924AC300F4A736 /* BaseViewStates.swift in Sources */,
+				5551094E2A9283DA00972C1F /* HomeViewState.swift in Sources */,
+				5551094C2A9283D100972C1F /* HomeViewModel.swift in Sources */,
+				555109502A92843B00972C1F /* HomeViewServiceable.swift in Sources */,
 				55977BB22A924A9E00F4A736 /* BaseViewModel.swift in Sources */,
 				55977BA82A92478D00F4A736 /* PetStatus.swift in Sources */,
-				55977B772A92154000F4A736 /* ViewController.swift in Sources */,
+				555109482A927FE600972C1F /* CartViewControllerBuilder.swift in Sources */,
+				555109422A92707200972C1F /* ProfileViewController.swift in Sources */,
+				555109442A92771600972C1F /* TabBarControllerBuilder.swift in Sources */,
+				5551094A2A92800200972C1F /* HomeViewControllerBuilder.swift in Sources */,
+				555109462A927FB900972C1F /* ProfileViewControllerBuilder.swift in Sources */,
+				5551093E2A92705E00972C1F /* HomeViewController.swift in Sources */,
 				55977B732A92154000F4A736 /* AppDelegate.swift in Sources */,
+				555109392A926EA400972C1F /* TabBarController.swift in Sources */,
 				55977B8B2A9215DA00F4A736 /* Coordinator.swift in Sources */,
 				55977B892A9215CD00F4A736 /* CoordinatorProtocol.swift in Sources */,
 				55977B8F2A9216DE00F4A736 /* HttpClient.swift in Sources */,
@@ -287,14 +355,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		55977B782A92154000F4A736 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				55977B792A92154000F4A736 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		55977B7D2A92154100F4A736 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -356,7 +416,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -410,7 +470,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -432,8 +492,7 @@
 				INFOPLIST_FILE = PetStore/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -441,9 +500,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = brsrld.PetStore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -459,8 +521,7 @@
 				INFOPLIST_FILE = PetStore/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -468,9 +529,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = brsrld.PetStore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

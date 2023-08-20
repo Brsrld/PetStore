@@ -17,7 +17,9 @@ final class Coordinator: CoordinatorProtocol {
     
     // MARK: Functions
     func start() {
-        // TO DO: It will be created starting view
+        let vc = TabBarControllerBuilder.build(coordinator: self)
+        navigationController?.setViewControllers([vc],
+                                                 animated: true)
     }
 
     func eventOccurred(with viewController: UIViewController) {
