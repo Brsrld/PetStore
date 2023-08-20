@@ -18,6 +18,11 @@
 		5551094C2A9283D100972C1F /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5551094B2A9283D100972C1F /* HomeViewModel.swift */; };
 		5551094E2A9283DA00972C1F /* HomeViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5551094D2A9283DA00972C1F /* HomeViewState.swift */; };
 		555109502A92843B00972C1F /* HomeViewServiceable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5551094F2A92843B00972C1F /* HomeViewServiceable.swift */; };
+		555109532A929A1C00972C1F /* PetsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555109522A929A1C00972C1F /* PetsCollectionViewCell.swift */; };
+		555109562A929BB700972C1F /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 555109552A929BB700972C1F /* SnapKit */; };
+		555109582A92A04A00972C1F /* PetsCollectionViewCellItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555109572A92A04A00972C1F /* PetsCollectionViewCellItems.swift */; };
+		5551095B2A92A29200972C1F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 5551095A2A92A29200972C1F /* Kingfisher */; };
+		555109602A92B3D300972C1F /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5551095F2A92B3D300972C1F /* UIView+Extension.swift */; };
 		55977B732A92154000F4A736 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55977B722A92154000F4A736 /* AppDelegate.swift */; };
 		55977B752A92154000F4A736 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55977B742A92154000F4A736 /* SceneDelegate.swift */; };
 		55977B7C2A92154100F4A736 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55977B7B2A92154100F4A736 /* Assets.xcassets */; };
@@ -46,6 +51,9 @@
 		5551094B2A9283D100972C1F /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		5551094D2A9283DA00972C1F /* HomeViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewState.swift; sourceTree = "<group>"; };
 		5551094F2A92843B00972C1F /* HomeViewServiceable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewServiceable.swift; sourceTree = "<group>"; };
+		555109522A929A1C00972C1F /* PetsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetsCollectionViewCell.swift; sourceTree = "<group>"; };
+		555109572A92A04A00972C1F /* PetsCollectionViewCellItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetsCollectionViewCellItems.swift; sourceTree = "<group>"; };
+		5551095F2A92B3D300972C1F /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		55977B6F2A92154000F4A736 /* PetStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55977B722A92154000F4A736 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		55977B742A92154000F4A736 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -68,7 +76,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5551095B2A92A29200972C1F /* Kingfisher in Frameworks */,
 				55977B982A9217EC00F4A736 /* Alamofire in Frameworks */,
+				555109562A929BB700972C1F /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +88,7 @@
 		555109352A926E5F00972C1F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				555109512A9299E700972C1F /* Cells */,
 				555109362A926E6400972C1F /* Screens */,
 			);
 			name = Views;
@@ -130,6 +141,23 @@
 				555109452A927FB900972C1F /* ProfileViewControllerBuilder.swift */,
 			);
 			name = ProfileView;
+			sourceTree = "<group>";
+		};
+		555109512A9299E700972C1F /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				5551095C2A92A88900972C1F /* PetsCollectionView */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		5551095C2A92A88900972C1F /* PetsCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				555109572A92A04A00972C1F /* PetsCollectionViewCellItems.swift */,
+				555109522A929A1C00972C1F /* PetsCollectionViewCell.swift */,
+			);
+			name = PetsCollectionView;
 			sourceTree = "<group>";
 		};
 		55977B662A92154000F4A736 = {
@@ -203,6 +231,7 @@
 		55977B9D2A9237EE00F4A736 /* Extesions */ = {
 			isa = PBXGroup;
 			children = (
+				5551095F2A92B3D300972C1F /* UIView+Extension.swift */,
 			);
 			name = Extesions;
 			sourceTree = "<group>";
@@ -269,6 +298,8 @@
 			name = PetStore;
 			packageProductDependencies = (
 				55977B972A9217EC00F4A736 /* Alamofire */,
+				555109552A929BB700972C1F /* SnapKit */,
+				5551095A2A92A29200972C1F /* Kingfisher */,
 			);
 			productName = PetStore;
 			productReference = 55977B6F2A92154000F4A736 /* PetStore.app */;
@@ -300,6 +331,8 @@
 			mainGroup = 55977B662A92154000F4A736;
 			packageReferences = (
 				55977B962A9217EC00F4A736 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				555109542A929BB700972C1F /* XCRemoteSwiftPackageReference "SnapKit" */,
+				555109592A92A29200972C1F /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 55977B702A92154000F4A736 /* Products */;
 			projectDirPath = "";
@@ -330,6 +363,8 @@
 				555109402A92706700972C1F /* CartViewController.swift in Sources */,
 				55977B912A9216F600F4A736 /* Endpoint.swift in Sources */,
 				55977BB42A924AC300F4A736 /* BaseViewStates.swift in Sources */,
+				555109582A92A04A00972C1F /* PetsCollectionViewCellItems.swift in Sources */,
+				555109602A92B3D300972C1F /* UIView+Extension.swift in Sources */,
 				5551094E2A9283DA00972C1F /* HomeViewState.swift in Sources */,
 				5551094C2A9283D100972C1F /* HomeViewModel.swift in Sources */,
 				555109502A92843B00972C1F /* HomeViewServiceable.swift in Sources */,
@@ -342,6 +377,7 @@
 				555109462A927FB900972C1F /* ProfileViewControllerBuilder.swift in Sources */,
 				5551093E2A92705E00972C1F /* HomeViewController.swift in Sources */,
 				55977B732A92154000F4A736 /* AppDelegate.swift in Sources */,
+				555109532A929A1C00972C1F /* PetsCollectionViewCell.swift in Sources */,
 				555109392A926EA400972C1F /* TabBarController.swift in Sources */,
 				55977B8B2A9215DA00F4A736 /* Coordinator.swift in Sources */,
 				55977B892A9215CD00F4A736 /* CoordinatorProtocol.swift in Sources */,
@@ -562,6 +598,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		555109542A929BB700972C1F /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		555109592A92A29200972C1F /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		55977B962A9217EC00F4A736 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
@@ -573,6 +625,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		555109552A929BB700972C1F /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 555109542A929BB700972C1F /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		5551095A2A92A29200972C1F /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 555109592A92A29200972C1F /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		55977B972A9217EC00F4A736 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 55977B962A9217EC00F4A736 /* XCRemoteSwiftPackageReference "Alamofire" */;
