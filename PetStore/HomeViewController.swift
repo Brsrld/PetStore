@@ -11,20 +11,20 @@ import SnapKit
 
 final class HomeViewController: UIViewController {
     // MARK: - Properties
-    //    private lazy var petsCollectionView: UICollectionView = {
-    //        let layout = UICollectionViewFlowLayout()
-    //        layout.scrollDirection = .vertical
-    //        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-    //        collectionView.translatesAutoresizingMaskIntoConstraints = false
-    //        collectionView.backgroundColor = .clear
-    //        collectionView.register(
-    //            PetsCollectionViewCell.self,
-    //            forCellWithReuseIdentifier: String(describing: PetsCollectionViewCell.self)
-    //        )
-    //        return collectionView
-    //    }()
+    lazy var petsCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        return collection
+    }()
     
-    var petsCollectionView:UICollectionView?
+    let petStatus: UISegmentedControl = {
+        let segmentedControl = UISegmentedControl(items: ["Avaliable", "Pending", "Sold"])
+        segmentedControl.selectedSegmentIndex = 0
+        segmentedControl.tintColor = .yellow
+        segmentedControl.backgroundColor = .lightText
+        return segmentedControl
+    }()
+    
     private var coordinator: Coordinator
     private var viewModel: HomeViewModelProtocol
     private var cancellables: Set<AnyCancellable> = []
@@ -60,40 +60,41 @@ final class HomeViewController: UIViewController {
                     self?.view.activityStartAnimating()
                 case .finished:
                     self?.view.activityStopAnimating()
-                    self?.petsCollectionView?.reloadData()
+                    self?.petsCollectionView.reloadData()
                 case .ready:
-                    //self?.setUpConstraint()
-                    self?.setUpDelegates()
+                    self?.prepareSegmentedControl()
+                    self?.prepareCollectionView()
                     self?.viewModel.serviceInitialize()
                     self?.view.backgroundColor = .white
                 }
             }.store(in: &cancellables)
     }
     
-    private func setUpDelegates() {
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
-        layout.itemSize = CGSize(width: 60, height: 60)
-        
-        petsCollectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
-        
-        petsCollectionView?.register(PetsCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
-        petsCollectionView?.backgroundColor = UIColor.white
-        
-        view.addSubview(petsCollectionView ?? UICollectionView())
-        petsCollectionView?.delegate = self
-        petsCollectionView?.dataSource = self
-        petsCollectionView?.backgroundColor = .green
+    @objc func segmentedValueChanged(_ sender:UISegmentedControl!) {
+        viewModel.petsData.removeAll()
+        viewModel.petStatus = PetStatus.allCases[sender.selectedSegmentIndex]
+        viewModel.serviceInitialize()
     }
     
-    private func setUpConstraint() {
-        view.addSubview(petsCollectionView!)
-        petsCollectionView?.snp.makeConstraints { make in
+    private func prepareSegmentedControl() {
+        navigationItem.titleView = petStatus
+        petStatus.addTarget(self, action: #selector(self.segmentedValueChanged(_:)),
+                            for: .valueChanged)
+        
+    }
+    
+    private func prepareCollectionView() {
+        view.addSubview(petsCollectionView)
+        petsCollectionView.register(PetsCollectionViewCell.self,
+                                    forCellWithReuseIdentifier: String(describing: PetsCollectionViewCell.self))
+        petsCollectionView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(12)
-            make.leading.equalToSuperview().offset(12)
-            make.trailing.equalToSuperview().offset(12)
-            make.top.equalToSuperview().offset(12)
+            make.bottom.equalToSuperview().offset(12)
+            make.leading.equalToSuperview().offset(8)
+            make.trailing.equalToSuperview().offset(-8)
         }
+        petsCollectionView.dataSource = self
+        petsCollectionView.delegate = self
     }
 }
 
@@ -104,15 +105,13 @@ extension HomeViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? PetsCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier:  String(describing: PetsCollectionViewCell.self), for: indexPath) as? PetsCollectionViewCell else { return UICollectionViewCell() }
         
-        guard let title =   viewModel.petsData[indexPath.row].name,
-              let image =   viewModel.petsData[indexPath.row].photoUrls?.last else { return UICollectionViewCell()}
-        
-        cell.setUpContent(item: PetsCollectionViewCellItems(title: title,
-                                                            image: image,
+        cell.setUpContent(item: PetsCollectionViewCellItems(title: viewModel.petsData[indexPath.row].name,
+                                                            image: viewModel.petsData[indexPath.row].photoUrls?.last,
+                                                            status: viewModel.petStatus,
+                                                            indexPath: indexPath.row,
                                                             delegate: self))
-        
         return cell
     }
 }
@@ -124,22 +123,25 @@ extension HomeViewController: UICollectionViewDelegate {
     }
 }
 
+
 extension HomeViewController: PetsCollectionViewCellOutputProtocol {
-    func onTappedButton() {
-        print("Tapped")
+    func onTappedButton(indexPath: Int?) {
+        self.toastMessage("Pet has been added to cart")
+        guard let index = indexPath else { return }
+        viewModel.cartPets.append(viewModel.petsData[index])
     }
 }
 
-//// MARK: - UICollectionViewDelegateFlowLayout
-//extension HomeViewController: UICollectionViewDelegateFlowLayout {
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let colums: CGFloat = 2
-//        let collectioViewWith = collectionView.bounds.width
-//        let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
-//        let spaceBetweenCells = flowLayout.minimumInteritemSpacing * (colums - 1)
-//        let adjustedWith = collectioViewWith - spaceBetweenCells
-//        let width: CGFloat = floor(adjustedWith / colums)
-//        let height: CGFloat = view.bounds.height / 3
-//        return CGSize(width: width, height: height)
-//    }
-//}
+// MARK: - UICollectionViewDelegateFlowLayout
+extension HomeViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let colums: CGFloat = 2
+        let collectioViewWith = collectionView.bounds.width
+        let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
+        let spaceBetweenCells = flowLayout.minimumInteritemSpacing * (colums - 1)
+        let adjustedWith = collectioViewWith - spaceBetweenCells
+        let width: CGFloat = floor(adjustedWith / colums)
+        let height: CGFloat = viewModel.petStatus == .available ? view.bounds.height / 4.5 : view.bounds.height / 6
+        return CGSize(width: width, height: height)
+    }
+}

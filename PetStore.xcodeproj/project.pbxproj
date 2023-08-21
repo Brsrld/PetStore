@@ -37,6 +37,18 @@
 		55977BAE2A92481000F4A736 /* GetPetEndPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55977BAD2A92481000F4A736 /* GetPetEndPoints.swift */; };
 		55977BB22A924A9E00F4A736 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55977BB12A924A9E00F4A736 /* BaseViewModel.swift */; };
 		55977BB42A924AC300F4A736 /* BaseViewStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55977BB32A924AC300F4A736 /* BaseViewStates.swift */; };
+		55AE0FE22A93AA04000711AB /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AE0FE12A93AA04000711AB /* UIViewController+Extension.swift */; };
+		55CDD3162A93D1F700B3C4A0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CDD3152A93D1F700B3C4A0 /* LoginViewController.swift */; };
+		55CDD3182A93D2E200B3C4A0 /* LoginViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CDD3172A93D2E200B3C4A0 /* LoginViewBuilder.swift */; };
+		55CDD31B2A93DE7F00B3C4A0 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CDD31A2A93DE7F00B3C4A0 /* SignUpViewController.swift */; };
+		55CDD31D2A93DE8B00B3C4A0 /* SignUpViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CDD31C2A93DE8B00B3C4A0 /* SignUpViewBuilder.swift */; };
+		55CDD31F2A93DE9900B3C4A0 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CDD31E2A93DE9900B3C4A0 /* SignUpViewModel.swift */; };
+		55CDD3212A93DEA400B3C4A0 /* SignUpViewStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CDD3202A93DEA400B3C4A0 /* SignUpViewStates.swift */; };
+		55CDD3232A93E01A00B3C4A0 /* SignUpEndPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CDD3222A93E01A00B3C4A0 /* SignUpEndPoints.swift */; };
+		55CDD3252A93E1E400B3C4A0 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CDD3242A93E1E400B3C4A0 /* UserModel.swift */; };
+		55CDD3272A93E2B100B3C4A0 /* SignUpServiceable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CDD3262A93E2B100B3C4A0 /* SignUpServiceable.swift */; };
+		55CDD3292A93E4CC00B3C4A0 /* Encodable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CDD3282A93E4CC00B3C4A0 /* Encodable+Extension.swift */; };
+		55CDD32B2A93E69100B3C4A0 /* UserModelResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CDD32A2A93E69100B3C4A0 /* UserModelResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +81,18 @@
 		55977BAD2A92481000F4A736 /* GetPetEndPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPetEndPoints.swift; sourceTree = "<group>"; };
 		55977BB12A924A9E00F4A736 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		55977BB32A924AC300F4A736 /* BaseViewStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewStates.swift; sourceTree = "<group>"; };
+		55AE0FE12A93AA04000711AB /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		55CDD3152A93D1F700B3C4A0 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		55CDD3172A93D2E200B3C4A0 /* LoginViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewBuilder.swift; sourceTree = "<group>"; };
+		55CDD31A2A93DE7F00B3C4A0 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		55CDD31C2A93DE8B00B3C4A0 /* SignUpViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewBuilder.swift; sourceTree = "<group>"; };
+		55CDD31E2A93DE9900B3C4A0 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		55CDD3202A93DEA400B3C4A0 /* SignUpViewStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewStates.swift; sourceTree = "<group>"; };
+		55CDD3222A93E01A00B3C4A0 /* SignUpEndPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpEndPoints.swift; sourceTree = "<group>"; };
+		55CDD3242A93E1E400B3C4A0 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		55CDD3262A93E2B100B3C4A0 /* SignUpServiceable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpServiceable.swift; sourceTree = "<group>"; };
+		55CDD3282A93E4CC00B3C4A0 /* Encodable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Extension.swift"; sourceTree = "<group>"; };
+		55CDD32A2A93E69100B3C4A0 /* UserModelResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModelResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +121,8 @@
 		555109362A926E6400972C1F /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				55CDD3192A93DE2500B3C4A0 /* SignUpView */,
+				55CDD3142A93D1DF00B3C4A0 /* LoginView */,
 				5551093C2A92704800972C1F /* ProfileView */,
 				5551093B2A92704200972C1F /* CartView */,
 				5551093A2A92703C00972C1F /* HomeView */,
@@ -232,6 +258,8 @@
 			isa = PBXGroup;
 			children = (
 				5551095F2A92B3D300972C1F /* UIView+Extension.swift */,
+				55AE0FE12A93AA04000711AB /* UIViewController+Extension.swift */,
+				55CDD3282A93E4CC00B3C4A0 /* Encodable+Extension.swift */,
 			);
 			name = Extesions;
 			sourceTree = "<group>";
@@ -241,6 +269,8 @@
 			children = (
 				55977BA72A92478D00F4A736 /* PetStatus.swift */,
 				55977BA92A9247AE00F4A736 /* PetModel.swift */,
+				55CDD3242A93E1E400B3C4A0 /* UserModel.swift */,
+				55CDD32A2A93E69100B3C4A0 /* UserModelResponse.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -249,6 +279,7 @@
 			isa = PBXGroup;
 			children = (
 				5551094F2A92843B00972C1F /* HomeViewServiceable.swift */,
+				55CDD3262A93E2B100B3C4A0 /* SignUpServiceable.swift */,
 			);
 			name = Serviceables;
 			sourceTree = "<group>";
@@ -257,6 +288,7 @@
 			isa = PBXGroup;
 			children = (
 				55977BAD2A92481000F4A736 /* GetPetEndPoints.swift */,
+				55CDD3222A93E01A00B3C4A0 /* SignUpEndPoints.swift */,
 			);
 			name = EndPoints;
 			sourceTree = "<group>";
@@ -278,6 +310,26 @@
 				55977BB32A924AC300F4A736 /* BaseViewStates.swift */,
 			);
 			name = BaseViewModel;
+			sourceTree = "<group>";
+		};
+		55CDD3142A93D1DF00B3C4A0 /* LoginView */ = {
+			isa = PBXGroup;
+			children = (
+				55CDD3152A93D1F700B3C4A0 /* LoginViewController.swift */,
+				55CDD3172A93D2E200B3C4A0 /* LoginViewBuilder.swift */,
+			);
+			name = LoginView;
+			sourceTree = "<group>";
+		};
+		55CDD3192A93DE2500B3C4A0 /* SignUpView */ = {
+			isa = PBXGroup;
+			children = (
+				55CDD31A2A93DE7F00B3C4A0 /* SignUpViewController.swift */,
+				55CDD31C2A93DE8B00B3C4A0 /* SignUpViewBuilder.swift */,
+				55CDD31E2A93DE9900B3C4A0 /* SignUpViewModel.swift */,
+				55CDD3202A93DEA400B3C4A0 /* SignUpViewStates.swift */,
+			);
+			name = SignUpView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -360,28 +412,40 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55CDD3162A93D1F700B3C4A0 /* LoginViewController.swift in Sources */,
 				555109402A92706700972C1F /* CartViewController.swift in Sources */,
 				55977B912A9216F600F4A736 /* Endpoint.swift in Sources */,
 				55977BB42A924AC300F4A736 /* BaseViewStates.swift in Sources */,
 				555109582A92A04A00972C1F /* PetsCollectionViewCellItems.swift in Sources */,
+				55CDD3292A93E4CC00B3C4A0 /* Encodable+Extension.swift in Sources */,
 				555109602A92B3D300972C1F /* UIView+Extension.swift in Sources */,
 				5551094E2A9283DA00972C1F /* HomeViewState.swift in Sources */,
 				5551094C2A9283D100972C1F /* HomeViewModel.swift in Sources */,
+				55CDD3252A93E1E400B3C4A0 /* UserModel.swift in Sources */,
+				55CDD31F2A93DE9900B3C4A0 /* SignUpViewModel.swift in Sources */,
+				55CDD3182A93D2E200B3C4A0 /* LoginViewBuilder.swift in Sources */,
 				555109502A92843B00972C1F /* HomeViewServiceable.swift in Sources */,
 				55977BB22A924A9E00F4A736 /* BaseViewModel.swift in Sources */,
 				55977BA82A92478D00F4A736 /* PetStatus.swift in Sources */,
 				555109482A927FE600972C1F /* CartViewControllerBuilder.swift in Sources */,
 				555109422A92707200972C1F /* ProfileViewController.swift in Sources */,
+				55CDD31D2A93DE8B00B3C4A0 /* SignUpViewBuilder.swift in Sources */,
 				555109442A92771600972C1F /* TabBarControllerBuilder.swift in Sources */,
 				5551094A2A92800200972C1F /* HomeViewControllerBuilder.swift in Sources */,
+				55CDD31B2A93DE7F00B3C4A0 /* SignUpViewController.swift in Sources */,
+				55AE0FE22A93AA04000711AB /* UIViewController+Extension.swift in Sources */,
 				555109462A927FB900972C1F /* ProfileViewControllerBuilder.swift in Sources */,
 				5551093E2A92705E00972C1F /* HomeViewController.swift in Sources */,
+				55CDD3212A93DEA400B3C4A0 /* SignUpViewStates.swift in Sources */,
+				55CDD3232A93E01A00B3C4A0 /* SignUpEndPoints.swift in Sources */,
+				55CDD32B2A93E69100B3C4A0 /* UserModelResponse.swift in Sources */,
 				55977B732A92154000F4A736 /* AppDelegate.swift in Sources */,
 				555109532A929A1C00972C1F /* PetsCollectionViewCell.swift in Sources */,
 				555109392A926EA400972C1F /* TabBarController.swift in Sources */,
 				55977B8B2A9215DA00F4A736 /* Coordinator.swift in Sources */,
 				55977B892A9215CD00F4A736 /* CoordinatorProtocol.swift in Sources */,
 				55977B8F2A9216DE00F4A736 /* HttpClient.swift in Sources */,
+				55CDD3272A93E2B100B3C4A0 /* SignUpServiceable.swift in Sources */,
 				55977BAE2A92481000F4A736 /* GetPetEndPoints.swift in Sources */,
 				55977B752A92154000F4A736 /* SceneDelegate.swift in Sources */,
 				55977BAA2A9247AE00F4A736 /* PetModel.swift in Sources */,

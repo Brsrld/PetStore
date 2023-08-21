@@ -9,13 +9,17 @@ import Foundation
 
 protocol HomeViewModelProtocol {
     var statePublisher: Published<HomeViewStates>.Publisher { get }
-    var petsData: [PetModel] { get }
+    var petsData: [PetModel] { get set }
+    var cartPets: [PetModel] { get set }
+    var petStatus: PetStatus { get set }
     func serviceInitialize()
 }
 
 final class HomeViewModel: BaseViewModel<HomeViewStates> {
     let service: HomeViewServiceable
     var petsData: [PetModel] = []
+    var petStatus: PetStatus = .available
+    var cartPets: [PetModel] = []
     
     init(service: HomeViewServiceable) {
         self.service = service
@@ -25,7 +29,7 @@ final class HomeViewModel: BaseViewModel<HomeViewStates> {
         changeState(.loading)
         Task { [weak self] in
             guard let self = self else { return }
-            let result = await self.service.fetchPets(petStatus: .available)
+            let result = await self.service.fetchPets(petStatus: petStatus)
             self.changeState(.finished)
             switch result {
             case .success(let success):

@@ -8,11 +8,13 @@
 import Foundation
 
 protocol PetsCollectionViewCellOutputProtocol: NSObject {
-    func onTappedButton()
+    func onTappedButton(indexPath: Int?)
 }
 
 struct PetsCollectionViewCellItems {
-    let title: String
-    let image: String
+    let title: String?
+    let image: String?
+    let status: PetStatus?
+    let indexPath: Int?
     weak var delegate: PetsCollectionViewCellOutputProtocol?
 }

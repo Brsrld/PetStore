@@ -11,18 +11,29 @@ import Kingfisher
 
 final class PetsCollectionViewCell: UICollectionViewCell {
     private weak var delegate: PetsCollectionViewCellOutputProtocol?
+    private var indexPath: Int?
     
     private lazy var petImage: UIImageView = {
-        let image = UIImageView()
+        let image = UIImageView(frame: .zero)
         image.translatesAutoresizingMaskIntoConstraints = false
+        image.layer.cornerRadius = 8
         image.contentMode = .scaleAspectFit
         return image
     }()
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .black
-        label.font = UIFont.boldSystemFont(ofSize: 15)
+        label.textColor = .gray
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.numberOfLines = 2
+        label.textAlignment = .center
+        return label
+    }()
+    
+    private lazy var statusLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .gray
+        label.font = UIFont.boldSystemFont(ofSize: 16)
         label.numberOfLines = 2
         label.textAlignment = .center
         return label
@@ -30,10 +41,11 @@ final class PetsCollectionViewCell: UICollectionViewCell {
     
     private var addToCartButton: UIButton = {
         let button = UIButton()
-        button.frame = CGRect(x: 100,
-                              y: 100,
-                              width: 200,
-                              height: 60)
+        button.backgroundColor = .lightText
+        button.setTitle("Add to Cart" , for: .normal)
+        button.setTitleColor(.gray, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.layer.cornerRadius = 10
         return button
     }()
     
@@ -50,41 +62,71 @@ final class PetsCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(petImage)
         contentView.addSubview(titleLabel)
         contentView.addSubview(addToCartButton)
-        contentView.backgroundColor = .lightText
+        contentView.addSubview(statusLabel)
         contentView.layer.cornerRadius = 8
+        contentView.backgroundColor = .systemFill
         
         petImage.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(12)
-            make.leading.equalToSuperview().offset(12)
-            make.trailing.equalToSuperview().offset(12)
-            make.height.equalTo(50)
+            make.leading.equalToSuperview().offset(8)
+            make.trailing.equalToSuperview().offset(-8)
+            make.height.equalTo(64)
         }
         
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(petImage.snp.bottom).offset(4)
-            make.leading.equalToSuperview().offset(12)
-            make.trailing.equalToSuperview().offset(12)
+            make.top.equalTo(petImage.snp.bottom).offset(18)
+            make.leading.equalToSuperview().offset(8)
+            make.trailing.equalToSuperview().offset(-8)
         }
         
         addToCartButton.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(18)
+            make.leading.equalToSuperview().offset(8)
+            make.trailing.equalToSuperview().offset(-8)
+        }
+        
+        statusLabel.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(4)
-            make.leading.equalToSuperview().offset(12)
-            make.trailing.equalToSuperview().offset(12)
+            make.leading.equalToSuperview().offset(8)
+            make.trailing.equalToSuperview().offset(-8)
         }
     }
     
      @objc
     private func buttonAction() {
-        delegate?.onTappedButton()
+        delegate?.onTappedButton(indexPath: indexPath)
     }
     
     func setUpContent(item:PetsCollectionViewCellItems) {
+        self.indexPath = item.indexPath
         self.delegate = item.delegate
-        petImage.kf.setImage(with: URL(string: item.image))
-        titleLabel.text = item.title
-        addToCartButton.titleLabel?.text = "Add to Cart" 
+        if let image = item.image, let title = item.title {
+            petImage.kf.setImage(with: URL(string: image),
+                                 placeholder: UIImage(systemName: "photo"))
+            titleLabel.text = title.capitalized
+        }
+    
         addToCartButton.addTarget(self,
                                   action: #selector(buttonAction),
                                   for: .touchUpInside)
+        
+        switch item.status {
+        case .available:
+            addToCartButton.isHidden = false
+            statusLabel.isHidden = true
+            contentView.backgroundColor = .systemFill
+        case .pending:
+            addToCartButton.isHidden = true
+            statusLabel.isHidden = false
+            statusLabel.text = "Cannot be bought"
+            contentView.backgroundColor = .red.withAlphaComponent(0.2)
+        case .sold:
+            addToCartButton.isHidden = true
+            statusLabel.isHidden = false
+            statusLabel.text = "Cannot be bought"
+            contentView.backgroundColor = .red.withAlphaComponent(0.2)
+        case .none:
+            print("none")
+        }
     }
 }

@@ -17,7 +17,7 @@ final class Coordinator: CoordinatorProtocol {
     
     // MARK: Functions
     func start() {
-        let vc = TabBarControllerBuilder.build(coordinator: self)
+        let vc = LoginViewControllerBuilder.build(coordinator: self)
         navigationController?.setViewControllers([vc],
                                                  animated: true)
     }

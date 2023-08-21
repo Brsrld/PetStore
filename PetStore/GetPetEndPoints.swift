@@ -12,7 +12,7 @@ import Alamofire
 struct GetPetEndPoints: Endpoint  {
     let status: PetStatus
     
-    var queryItems: [URLQueryItem] {
+    var queryItems: [URLQueryItem]? {
         return [URLQueryItem(name: "status", value: status.rawValue)]
     }
     

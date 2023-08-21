@@ -7,8 +7,8 @@
 
 import Foundation
 
-enum PetStatus: String {
-case available = "available"
-case pending = "pending"
-case sold =  "sold"
+enum PetStatus: String, CaseIterable {
+    case available = "available"
+    case pending = "pending"
+    case sold =  "sold"
 }
