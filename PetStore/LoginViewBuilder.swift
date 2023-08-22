@@ -10,7 +10,9 @@ import UIKit
 
 enum LoginViewControllerBuilder {
     static func build(coordinator: Coordinator) -> UIViewController {
-        let viewController = LoginViewController(coordinator: coordinator)
+        let service: SignInServiceable = SignInService()
+        let viewModel: LoginViewModelProtocol = LoginViewModel(service: service)
+        let viewController = LoginViewController(coordinator: coordinator, viewModel: viewModel)
        
         return viewController
     }

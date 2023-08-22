@@ -7,8 +7,97 @@
 
 import UIKit
 import Combine
+import SnapKit
 
-class SignUpViewController: UIViewController {
+final class SignUpViewController: UIViewController {
+    
+    private lazy var firstNameTextFiled: UITextField = {
+        let textFiled = UITextField()
+        textFiled.placeholder = "First Name"
+        textFiled.font = UIFont.systemFont(ofSize: 15)
+        textFiled.borderStyle = UITextField.BorderStyle.roundedRect
+        textFiled.autocorrectionType = UITextAutocorrectionType.no
+        textFiled.keyboardType = UIKeyboardType.default
+        textFiled.returnKeyType = UIReturnKeyType.done
+        textFiled.clearButtonMode = UITextField.ViewMode.whileEditing
+        textFiled.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+        return textFiled
+    }()
+    
+    private lazy var lastNameTextfiled: UITextField = {
+        let textFiled = UITextField()
+        textFiled.placeholder = "Last Name"
+        textFiled.font = UIFont.systemFont(ofSize: 15)
+        textFiled.borderStyle = UITextField.BorderStyle.roundedRect
+        textFiled.autocorrectionType = UITextAutocorrectionType.no
+        textFiled.keyboardType = UIKeyboardType.default
+        textFiled.returnKeyType = UIReturnKeyType.done
+        textFiled.clearButtonMode = UITextField.ViewMode.whileEditing
+        textFiled.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+        return textFiled
+    }()
+    
+    private lazy var emailTextfiled: UITextField = {
+        let textFiled = UITextField()
+        textFiled.placeholder = "E-mail"
+        textFiled.font = UIFont.systemFont(ofSize: 15)
+        textFiled.borderStyle = UITextField.BorderStyle.roundedRect
+        textFiled.autocorrectionType = UITextAutocorrectionType.no
+        textFiled.keyboardType = UIKeyboardType.default
+        textFiled.returnKeyType = UIReturnKeyType.done
+        textFiled.clearButtonMode = UITextField.ViewMode.whileEditing
+        textFiled.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+        return textFiled
+    }()
+    
+    private lazy var passwordTextfiled: UITextField = {
+        let textFiled = UITextField()
+        textFiled.placeholder = "Password"
+        textFiled.font = UIFont.systemFont(ofSize: 15)
+        textFiled.borderStyle = UITextField.BorderStyle.roundedRect
+        textFiled.autocorrectionType = UITextAutocorrectionType.no
+        textFiled.keyboardType = UIKeyboardType.default
+        textFiled.returnKeyType = UIReturnKeyType.done
+        textFiled.clearButtonMode = UITextField.ViewMode.whileEditing
+        textFiled.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+        return textFiled
+    }()
+    
+    private lazy var phoneTextfiled: UITextField = {
+        let textFiled = UITextField()
+        textFiled.placeholder = "Phone"
+        textFiled.font = UIFont.systemFont(ofSize: 15)
+        textFiled.borderStyle = UITextField.BorderStyle.roundedRect
+        textFiled.autocorrectionType = UITextAutocorrectionType.no
+        textFiled.keyboardType = UIKeyboardType.default
+        textFiled.returnKeyType = UIReturnKeyType.done
+        textFiled.clearButtonMode = UITextField.ViewMode.whileEditing
+        textFiled.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+        return textFiled
+    }()
+    
+    private lazy var userNameTextfiled: UITextField = {
+        let textFiled = UITextField()
+        textFiled.placeholder = "User Name"
+        textFiled.font = UIFont.systemFont(ofSize: 15)
+        textFiled.borderStyle = UITextField.BorderStyle.roundedRect
+        textFiled.autocorrectionType = UITextAutocorrectionType.no
+        textFiled.keyboardType = UIKeyboardType.default
+        textFiled.returnKeyType = UIReturnKeyType.done
+        textFiled.clearButtonMode = UITextField.ViewMode.whileEditing
+        textFiled.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+        return textFiled
+    }()
+    
+    private var signUpButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .systemOrange
+        button.setTitle("Sign Up" , for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.layer.cornerRadius = 8
+        return button
+    }()
     
     private var coordinator: Coordinator
     private var viewModel: SignUpViewModelProtocol
@@ -37,8 +126,6 @@ class SignUpViewController: UIViewController {
             .receive(on: RunLoop.main)
             .sink { [weak self] (state) in
                 switch state {
-                case .empty:
-                    print("Empty")
                 case .error(error: let error):
                     print(error)
                 case .loading:
@@ -46,21 +133,107 @@ class SignUpViewController: UIViewController {
                 case .finished:
                     self?.view.activityStopAnimating()
                 case .ready:
-                    self?.view.backgroundColor = .systemBackground
-                    self?.title = "SignUp"
-                    self?.viewModel.userModel = UserModel(id: nil,
-                                                          username: nil,
-                                                          firstName: "CEllo",
-                                                          lastName: "Tokko",
-                                                          email: "celloTokko@gmail.com",
-                                                          password: "cello.02",
-                                                          phone: "05531786559",
-                                                          userStatus: nil)
-                    self?.viewModel.serviceInit()
+                    self?.prepareUI()
+                    self?.prepareTextFields()
+                    self?.prepareButton()
                 case .success:
+                    self?.toastMessage("Successfully SignUp")
                     guard let coordinator = self?.coordinator else { return }
-                    //coordinator.navigationController?.popViewController(animated: true)
+                    coordinator.navigationController?.popViewController(animated: true)
                 }
             }.store(in: &cancellables)
     }
+    
+    private func prepareUI() {
+        view.backgroundColor = .systemBackground
+        title = "SignUp"
+    }
+    
+    private func prepareButton() {
+        self.view.addSubview(signUpButton)
+        signUpButton.snp.makeConstraints { make in
+            make.top.equalTo(emailTextfiled.snp.bottom).offset(12)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
+            make.height.equalTo(36)
+        }
+        
+        signUpButton.addTarget(self,
+                                  action: #selector(signUpButtonAction),
+                                  for: .touchUpInside)
+    }
+    
+    private func prepareTextFields() {
+        self.view.addSubview(firstNameTextFiled)
+        self.view.addSubview(passwordTextfiled)
+        self.view.addSubview(lastNameTextfiled)
+        self.view.addSubview(userNameTextfiled)
+        self.view.addSubview(phoneTextfiled)
+        self.view.addSubview(emailTextfiled)
+        
+        firstNameTextFiled.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(16)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
+            make.height.equalTo(36)
+        }
+        
+        lastNameTextfiled.snp.makeConstraints { make in
+            make.top.equalTo(firstNameTextFiled.snp.bottom).offset(12)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
+            make.height.equalTo(36)
+        }
+        
+        userNameTextfiled.snp.makeConstraints { make in
+            make.top.equalTo(lastNameTextfiled.snp.bottom).offset(12)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
+            make.height.equalTo(36)
+        }
+        
+        passwordTextfiled.snp.makeConstraints { make in
+            make.top.equalTo(userNameTextfiled.snp.bottom).offset(12)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
+            make.height.equalTo(36)
+        }
+        
+        phoneTextfiled.snp.makeConstraints { make in
+            make.top.equalTo(passwordTextfiled.snp.bottom).offset(12)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
+            make.height.equalTo(36)
+        }
+        
+        emailTextfiled.snp.makeConstraints { make in
+            make.top.equalTo(phoneTextfiled.snp.bottom).offset(12)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
+            make.height.equalTo(36)
+        }
+    }
+    
+    @objc
+   private func signUpButtonAction() {
+       guard let username = userNameTextfiled.text,
+             let firstName = userNameTextfiled.text,
+             let lastName = userNameTextfiled.text,
+             let email = userNameTextfiled.text,
+             let password = userNameTextfiled.text,
+             let phone = userNameTextfiled.text else {
+           viewModel.errorState()
+           return
+       }
+       
+       viewModel.userModel  = UserModel(id: nil,
+                                        username: username,
+                                        firstName: firstName,
+                                        lastName: lastName,
+                                        email: email,
+                                        password: password,
+                                        phone: phone,
+                                        userStatus: nil)
+       viewModel.serviceInit()
+   }
 }

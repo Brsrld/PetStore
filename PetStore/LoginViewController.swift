@@ -7,9 +7,9 @@
 
 import UIKit
 import SnapKit
+import Combine
 
 final class LoginViewController: UIViewController {
-    private var coordinator: Coordinator
     
     private lazy var userNameTextFiled: UITextField = {
         let textFiled = UITextField()
@@ -67,9 +67,14 @@ final class LoginViewController: UIViewController {
         return button
     }()
     
+    private var coordinator: Coordinator
+    private var viewModel: LoginViewModelProtocol
+    private var cancellables: Set<AnyCancellable> = []
+    
     // MARK: - Base Functions
-    init(coordinator: Coordinator) {
+    init(coordinator: Coordinator, viewModel: LoginViewModelProtocol) {
         self.coordinator = coordinator
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -79,11 +84,38 @@ final class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        states()
+    }
+    
+    // MARK: - Custom Functions
+    private func states() {
+        viewModel.statePublisher
+            .receive(on: RunLoop.main)
+            .sink { [weak self] (state) in
+                switch state {
+                case .error(error: let error):
+                    print(error)
+                case .loading:
+                    self?.view.activityStartAnimating()
+                case .finished:
+                    self?.view.activityStopAnimating()
+                case .ready:
+                    self?.prepareView()
+                    self?.prepareImage()
+                    self?.prepareTextFields()
+                    self?.prepareButtons()
+                case .success:
+                    self?.toastMessage("Successfully SignIp")
+                    guard let coordinator = self?.coordinator else { return }
+                    coordinator.eventOccurred(with: TabBarControllerBuilder.build(coordinator: coordinator))
+                    coordinator.navigationController?.isNavigationBarHidden = true
+                }
+            }.store(in: &cancellables)
+    }
+    
+    private func prepareView() {
         view.backgroundColor = .systemBackground
         title = "Login"
-        prepareImage()
-        prepareTextFields()
-        prepareButtons()
     }
     
     private func prepareButtons() {
@@ -142,9 +174,6 @@ final class LoginViewController: UIViewController {
             make.trailing.equalToSuperview().offset(-16)
             make.height.equalTo(36)
         }
-        
-        userNameTextFiled.delegate = self
-        passwordTextfiled.delegate = self
     }
     
     @objc
@@ -154,8 +183,12 @@ final class LoginViewController: UIViewController {
     
     @objc
    private func signInButtonAction() {
-       coordinator.eventOccurred(with: TabBarControllerBuilder.build(coordinator: coordinator))
+       guard let userName = userNameTextFiled.text,
+             let password = passwordTextfiled.text else {
+           viewModel.errorState()
+           return
+       }
+       viewModel.serviceInit(userName: userName,
+                             password: password)
    }
 }
-
-extension LoginViewController: UITextFieldDelegate {}

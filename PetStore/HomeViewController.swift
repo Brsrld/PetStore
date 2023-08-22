@@ -77,7 +77,13 @@ final class HomeViewController: UIViewController {
     }
     
     private func prepareSegmentedControl() {
-        navigationItem.titleView = petStatus
+        view.addSubview(petStatus)
+        petStatus.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
+            make.height.equalTo(36)
+        }
         petStatus.addTarget(self, action: #selector(self.segmentedValueChanged(_:)),
                             for: .valueChanged)
         
@@ -88,7 +94,7 @@ final class HomeViewController: UIViewController {
         petsCollectionView.register(PetsCollectionViewCell.self,
                                     forCellWithReuseIdentifier: String(describing: PetsCollectionViewCell.self))
         petsCollectionView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(12)
+            make.top.equalTo(petStatus.snp.bottom).offset(16)
             make.bottom.equalToSuperview().offset(12)
             make.leading.equalToSuperview().offset(8)
             make.trailing.equalToSuperview().offset(-8)

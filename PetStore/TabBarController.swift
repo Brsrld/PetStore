@@ -12,7 +12,6 @@ final class TabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setUI()
         setupTabs()
     }
@@ -49,7 +48,7 @@ final class TabBarController: UITabBarController {
     }
     
     private func setUI() {
-        UITabBar.appearance().backgroundColor = .lightText;
+        UITabBar.appearance().backgroundColor = .systemBackground;
     }
     
     private func createNav(title: String, image: UIImage?, vc: UIViewController) -> UINavigationController {
@@ -57,7 +56,6 @@ final class TabBarController: UITabBarController {
         
         nav.tabBarItem.title = title
         nav.tabBarItem.image = image
-        
         nav.viewControllers.first?.navigationItem.title = title
         
         return nav

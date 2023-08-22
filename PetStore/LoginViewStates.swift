@@ -1,13 +1,13 @@
 //
-//  SignUpViewStates.swift
+//  LoginViewStates.swift
 //  PetStore
 //
-//  Created by Brsrld on 21.08.2023.
+//  Created by Brsrld on 22.08.2023.
 //
 
 import Foundation
 
-enum SignUpViewStates: ViewStateProtocol {
+enum LoginViewStates: ViewStateProtocol {
     case ready
     case loading
     case finished
