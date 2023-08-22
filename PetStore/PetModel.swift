@@ -15,6 +15,7 @@ struct PetModel: Codable {
     let photoUrls: [String]?
     let tags: [Category]?
     let status: String?
+    var quantitiy: Int?
 }
 
 // MARK: - Category

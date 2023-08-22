@@ -8,6 +8,7 @@
 import Foundation
 import Alamofire
 
+// MARK: - SignInEndPoints
 struct SignInEndPoints: Endpoint  {
     let userName: String
     let password: String

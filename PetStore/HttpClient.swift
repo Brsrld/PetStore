@@ -8,10 +8,12 @@
 import Foundation
 import Alamofire
 
+// MARK: - HTTPClient Protocol
 protocol HTTPClient {
     func sendRequest<T: Decodable>(endpoint: Endpoint, responseModel: T.Type) async -> Result<T, AFError>
 }
 
+// MARK: - HTTPClient Extension
 extension HTTPClient {
     func sendRequest<T: Decodable>(
         endpoint: Endpoint,

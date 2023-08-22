@@ -10,6 +10,7 @@ import Combine
 import SnapKit
 
 final class SignUpViewController: UIViewController {
+    // MARK: - UI Properties
     
     private lazy var firstNameTextFiled: UITextField = {
         let textFiled = UITextField()
@@ -226,14 +227,14 @@ final class SignUpViewController: UIViewController {
            return
        }
        
-       viewModel.userModel  = UserModel(id: nil,
+       viewModel.userModel  = UserModel(id: 0,
                                         username: username,
                                         firstName: firstName,
                                         lastName: lastName,
                                         email: email,
                                         password: password,
                                         phone: phone,
-                                        userStatus: nil)
+                                        userStatus: 1)
        viewModel.serviceInit()
    }
 }

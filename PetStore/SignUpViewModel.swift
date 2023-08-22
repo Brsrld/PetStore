@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: - SignUpViewModelProtocol
 protocol SignUpViewModelProtocol {
     var statePublisher: Published<SignUpViewStates>.Publisher { get }
     var userModel: UserModel? { get set }
@@ -15,6 +16,8 @@ protocol SignUpViewModelProtocol {
 }
 
 final class SignUpViewModel: BaseViewModel<SignUpViewStates> {
+    // MARK: - Properties
+    
     var userModel: UserModel?
     private var service: SignUpServiceable
     
@@ -22,6 +25,7 @@ final class SignUpViewModel: BaseViewModel<SignUpViewStates> {
         self.service = service
     }
     
+    // MARK: - Functions
     func errorState() {
         self.changeState(.error(error: "User info cannot be empty"))
     }

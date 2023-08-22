@@ -7,6 +7,8 @@
 
 import Foundation
 
+// MARK: - PetStatus
+
 enum PetStatus: String, CaseIterable {
     case available = "available"
     case pending = "pending"

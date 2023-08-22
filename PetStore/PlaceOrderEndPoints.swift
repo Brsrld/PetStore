@@ -1,23 +1,23 @@
 //
-//  SignUpEndPoints.swift
+//  PlaceOrderEndPoints.swift
 //  PetStore
 //
-//  Created by Brsrld on 21.08.2023.
+//  Created by Brsrld on 22.08.2023.
 //
 
 import Foundation
 import Alamofire
 
-// MARK: - SignUpEndPoints
-struct SignUpEndPoints: Endpoint  {
-    let userModel: UserModel
+// MARK: - PlaceOrderEndPoints
+struct PlaceOrderEndPoints: Endpoint  {
+    let placeOrderModel: PlaceOrderModel
     
     var queryItems: [URLQueryItem]? {
         return nil
     }
     
     var path: String {
-        return "/v2/user"
+        return "/v2/store/order"
     }
     
     var method: HTTPMethod {
@@ -25,6 +25,6 @@ struct SignUpEndPoints: Endpoint  {
     }
     
     var body: [String : Any]? {
-        return userModel.dictionary
+        return placeOrderModel.dictionary
     }
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - UserREsponseModel
+// MARK: - UserResponseModel
 struct UserResponseModel: Decodable {
     let code: Int?
     let type: String?

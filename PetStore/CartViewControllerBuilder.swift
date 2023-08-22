@@ -10,8 +10,11 @@ import UIKit
 
 enum CartViewControllerBuilder {
     static func build(coordinator: Coordinator) -> UIViewController {
-        let viewController = CartViewController()
-        viewController.coordinator = coordinator
+        let service: CartServiceable = CartService()
+        let viewModel: CartViewModelProtocol = CartViewModel(service: service)
+        
+        let viewController = CartViewController(coordinator: coordinator,
+                                                viewModel: viewModel)
         
         return viewController
     }

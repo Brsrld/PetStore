@@ -46,6 +46,11 @@ final class HomeViewController: UIViewController {
         states()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        viewModel.serviceInitialize()
+        petsCollectionView.reloadData()
+    }
+    
     // MARK: - Custom Functions
     private func states() {
         viewModel.statePublisher
@@ -122,19 +127,11 @@ extension HomeViewController: UICollectionViewDataSource {
     }
 }
 
-// MARK: - UICollectionViewDelegate
-extension HomeViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Go to detail")
-    }
-}
-
-
+// MARK: - PetsCollectionViewCellOutputProtocol
 extension HomeViewController: PetsCollectionViewCellOutputProtocol {
     func onTappedButton(indexPath: Int?) {
         self.toastMessage("Pet has been added to cart")
-        guard let index = indexPath else { return }
-        viewModel.cartPets.append(viewModel.petsData[index])
+        viewModel.saveCartsData(index: indexPath)
     }
 }
 

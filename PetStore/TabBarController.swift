@@ -9,6 +9,7 @@ import UIKit
 
 final class TabBarController: UITabBarController {
     var coordinator: Coordinator
+    var userName: String
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,8 +17,9 @@ final class TabBarController: UITabBarController {
         setupTabs()
     }
     
-    init(coordinator: Coordinator) {
+    init(coordinator: Coordinator, userName: String) {
         self.coordinator = coordinator
+        self.userName = userName
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -36,7 +38,7 @@ final class TabBarController: UITabBarController {
         
         let profile = self.createNav(title: "Profile",
                                      image: UIImage(systemName: "person.crop.circle"),
-                                     vc: ProfileViewControllerBuilder.build(coordinator: coordinator))
+                                     vc: ProfileViewControllerBuilder.build(coordinator: coordinator, userName: userName))
         
         self.setViewControllers([home, cart, profile], animated: true)
         

@@ -8,6 +8,7 @@
 import Foundation
 import Alamofire
 
+// MARK: - Endpoint
 protocol Endpoint {
     var scheme: String { get }
     var host: String { get }
@@ -18,6 +19,7 @@ protocol Endpoint {
     var queryItems: [URLQueryItem]? { get }
 }
 
+// MARK: - Endpoint Extension
 extension Endpoint {
     var scheme: String {
         return "https"
@@ -29,6 +31,10 @@ extension Endpoint {
     
     var body: [String: Any]? {
         return ["":""]
+    }
+    
+    var queryItems: [URLQueryItem]?  {
+        return nil
     }
     
     var header: HTTPHeaders? {

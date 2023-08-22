@@ -8,10 +8,12 @@
 import Foundation
 import Alamofire
 
+// MARK: - SignInServiceable
 protocol SignInServiceable {
     func signIn(userName: String, password: String) async -> Result<UserLoginModel, Alamofire.AFError>
 }
 
+// MARK: - SignInService
 struct SignInService: HTTPClient, SignInServiceable {
     func signIn(userName: String,
                 password: String) async -> Result<UserLoginModel, Alamofire.AFError> {

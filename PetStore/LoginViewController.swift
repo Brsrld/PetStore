@@ -87,6 +87,10 @@ final class LoginViewController: UIViewController {
         states()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        coordinator.navigationController?.isNavigationBarHidden = false
+    }
+    
     // MARK: - Custom Functions
     private func states() {
         viewModel.statePublisher
@@ -106,8 +110,10 @@ final class LoginViewController: UIViewController {
                     self?.prepareButtons()
                 case .success:
                     self?.toastMessage("Successfully SignIp")
-                    guard let coordinator = self?.coordinator else { return }
-                    coordinator.eventOccurred(with: TabBarControllerBuilder.build(coordinator: coordinator))
+                    guard let coordinator = self?.coordinator,
+                          let userName = self?.userNameTextFiled.text else { return }
+                    
+                    coordinator.eventOccurred(with: TabBarControllerBuilder.build(coordinator: coordinator, userName: userName))
                     coordinator.navigationController?.isNavigationBarHidden = true
                 }
             }.store(in: &cancellables)

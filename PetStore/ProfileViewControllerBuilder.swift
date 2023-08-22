@@ -9,9 +9,13 @@ import Foundation
 import UIKit
 
 enum ProfileViewControllerBuilder {
-    static func build(coordinator: Coordinator) -> UIViewController {
-        let viewController = ProfileViewController()
-        viewController.coordinator = coordinator
+    static func build(coordinator: Coordinator, userName: String) -> UIViewController {
+        let service: ProfileServiceable = ProfileService()
+        let viewModel: ProfileViewModelProtocol = ProfileViewModel(service: service,
+                                                                   userName: userName)
+        
+        let viewController = ProfileViewController(coordinator: coordinator,
+                                                   viewModel: viewModel)
         
         return viewController
     }
