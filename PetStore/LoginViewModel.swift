@@ -25,6 +25,11 @@ final class LoginViewModel: BaseViewModel<LoginViewStates> {
     }
     
     func serviceInit(userName: String, password: String) {
+        if userName == "" && password == "" {
+            changeState(.error(error: "Username and password cannot be empty"))
+            return
+        }
+        
         changeState(.loading)
         Task { [weak self] in
             guard let self = self else { return }

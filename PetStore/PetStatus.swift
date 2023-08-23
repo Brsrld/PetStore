@@ -13,4 +13,5 @@ enum PetStatus: String, CaseIterable {
     case available = "available"
     case pending = "pending"
     case sold =  "sold"
+    case placed = "placed"
 }

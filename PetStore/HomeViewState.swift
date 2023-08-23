@@ -13,4 +13,5 @@ enum HomeViewStates: ViewStateProtocol {
     case finished
     case error(error: String)
     case empty
+    case successAddedCart
 }

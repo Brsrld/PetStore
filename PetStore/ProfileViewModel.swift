@@ -13,6 +13,7 @@ protocol ProfileViewModelProtocol {
     var userData: UserModel? { get }
     func getUserData()
     func logOut()
+    func changeEmpty()
 }
 
 final class ProfileViewModel: BaseViewModel<ProfileViewStates> {
@@ -38,6 +39,10 @@ final class ProfileViewModel: BaseViewModel<ProfileViewStates> {
                 self.changeState(.error(error: failure.localizedDescription))
             }
         }
+    }
+    
+    func changeEmpty() {
+        changeState(.empty)
     }
     
     func logOut() {

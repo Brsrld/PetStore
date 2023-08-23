@@ -17,6 +17,11 @@ final class CartViewController: UIViewController {
         return table
     }()
     
+    private let emptySuperView: UIView = {
+       let view = UIView()
+        return view
+    }()
+    
     private var coordinator: Coordinator
     private var viewModel: CartViewModelProtocol
     private var cancellables: Set<AnyCancellable> = []
@@ -32,7 +37,7 @@ final class CartViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         states()
@@ -50,9 +55,9 @@ final class CartViewController: UIViewController {
             .sink { [weak self] (state) in
                 switch state {
                 case .empty:
-                    print("Empty")
+                    self?.prepareEmptyView(isHidden: false)
                 case .error(error: let error):
-                    print(error)
+                    self?.alert(message: error)
                 case .loading:
                     self?.view.activityStartAnimating()
                 case .finished:
@@ -66,13 +71,41 @@ final class CartViewController: UIViewController {
                     self?.toastMessage("Pet has been ordered successfully")
                     self?.viewModel.readData()
                     self?.cartTableView.reloadData()
+                case .readDataSuccess:
+                    self?.prepareEmptyView(isHidden: true)
                 }
             }.store(in: &cancellables)
     }
     
+    private func prepareEmptyView(isHidden: Bool) {
+        let item = EmptyViewItems(title: "There is no data",
+                                  image: "cart.badge.minus",
+                                  buttonName: nil,
+                                  buttonType: .noButton)
+        
+        let emptyView = EmptyView(item: item)
+        
+        self.emptySuperView.addSubview(emptyView)
+        view.addSubview(emptySuperView)
+        
+        emptySuperView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.width.equalToSuperview().dividedBy(2)
+            make.height.equalToSuperview().dividedBy(6)
+        }
+        
+        emptyView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.width.equalTo(emptySuperView.snp.width)
+            make.height.equalTo(emptySuperView.snp.height)
+        }
+        
+        emptySuperView.isHidden = isHidden
+    }
+    
     private func prepareTableView() {
         view.addSubview(cartTableView)
-       
+        
         cartTableView.register(CartTableViewCell.self,
                                forCellReuseIdentifier: String(describing: CartTableViewCell.self))
         cartTableView.snp.makeConstraints { make in
@@ -97,9 +130,9 @@ extension CartViewController: UITableViewDataSource {
         else { return UITableViewCell() }
         
         cell.setUpContent(item: CarTableViewCellItem(title: viewModel.cartPets[indexPath.row].name,
-                                                            image: viewModel.cartPets[indexPath.row].photoUrls?.last,
-                                                            indexPath: indexPath.row,
-                                                            delegate: self))
+                                                     image: viewModel.cartPets[indexPath.row].photoUrls?.last,
+                                                     indexPath: indexPath.row,
+                                                     delegate: self))
         return cell
     }
     
@@ -115,4 +148,4 @@ extension CartViewController: CartTableViewCellOutputProtocol {
         viewModel.placeOrder()
     }
 }
-    
+

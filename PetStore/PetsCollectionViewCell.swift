@@ -25,7 +25,7 @@ final class PetsCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.textColor = .gray
         label.font = UIFont.boldSystemFont(ofSize: 16)
-        label.numberOfLines = 2
+        label.numberOfLines = 1
         label.textAlignment = .center
         return label
     }()
@@ -34,7 +34,7 @@ final class PetsCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.textColor = .gray
         label.font = UIFont.boldSystemFont(ofSize: 16)
-        label.numberOfLines = 2
+        label.numberOfLines = 1
         label.textAlignment = .center
         return label
     }()
@@ -127,6 +127,11 @@ final class PetsCollectionViewCell: UICollectionViewCell {
             contentView.backgroundColor = .red.withAlphaComponent(0.2)
         case .none:
             print("none")
+        case .placed:
+            addToCartButton.isHidden = true
+            statusLabel.isHidden = false
+            statusLabel.text = "Cannot be bought"
+            contentView.backgroundColor = .red.withAlphaComponent(0.2)
         }
     }
 }

@@ -11,18 +11,23 @@ import SnapKit
 
 final class HomeViewController: UIViewController {
     // MARK: - Properties
-    lazy var petsCollectionView: UICollectionView = {
+    private lazy var petsCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         return collection
     }()
     
-    let petStatus: UISegmentedControl = {
-        let segmentedControl = UISegmentedControl(items: ["Avaliable", "Pending", "Sold"])
+    private let petStatus: UISegmentedControl = {
+        let segmentedControl = UISegmentedControl(items: ["Avaliable", "Pending", "Sold", "Placed"])
         segmentedControl.selectedSegmentIndex = 0
         segmentedControl.tintColor = .yellow
         segmentedControl.backgroundColor = .lightText
         return segmentedControl
+    }()
+    
+    private let emptySuperView: UIView = {
+       let view = UIView()
+        return view
     }()
     
     private var coordinator: Coordinator
@@ -46,11 +51,6 @@ final class HomeViewController: UIViewController {
         states()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        viewModel.serviceInitialize()
-        petsCollectionView.reloadData()
-    }
-    
     // MARK: - Custom Functions
     private func states() {
         viewModel.statePublisher
@@ -58,19 +58,24 @@ final class HomeViewController: UIViewController {
             .sink { [weak self] (state) in
                 switch state {
                 case .empty:
-                    print("Empty")
+                    self?.prepareEmptyView(isHidden: false)
                 case .error(error: let error):
-                    print(error)
+                    self?.alert(message: error)
                 case .loading:
                     self?.view.activityStartAnimating()
                 case .finished:
                     self?.view.activityStopAnimating()
+                    self?.petsCollectionView.resetScrollPositionToTop()
                     self?.petsCollectionView.reloadData()
+                    self?.prepareEmptyView(isHidden: true)
                 case .ready:
                     self?.prepareSegmentedControl()
                     self?.prepareCollectionView()
                     self?.viewModel.serviceInitialize()
                     self?.view.backgroundColor = .white
+                case .successAddedCart:
+                    self?.toastMessage("Pet has been added to cart")
+                    self?.petsCollectionView.reloadData()
                 }
             }.store(in: &cancellables)
     }
@@ -79,6 +84,32 @@ final class HomeViewController: UIViewController {
         viewModel.petsData.removeAll()
         viewModel.petStatus = PetStatus.allCases[sender.selectedSegmentIndex]
         viewModel.serviceInitialize()
+    }
+    
+    private func prepareEmptyView(isHidden: Bool) {
+        let item = EmptyViewItems(title: "There is no data",
+                                  image: "cart.badge.minus",
+                                  buttonName: nil,
+                                  buttonType: .noButton)
+        
+        let emptyView = EmptyView(item: item)
+        
+        self.emptySuperView.addSubview(emptyView)
+        view.addSubview(emptySuperView)
+        
+        emptySuperView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.width.equalToSuperview().dividedBy(2)
+            make.height.equalToSuperview().dividedBy(6)
+        }
+        
+        emptyView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.width.equalTo(emptySuperView.snp.width)
+            make.height.equalTo(emptySuperView.snp.height)
+        }
+        
+        emptySuperView.isHidden = isHidden
     }
     
     private func prepareSegmentedControl() {
@@ -100,7 +131,7 @@ final class HomeViewController: UIViewController {
                                     forCellWithReuseIdentifier: String(describing: PetsCollectionViewCell.self))
         petsCollectionView.snp.makeConstraints { make in
             make.top.equalTo(petStatus.snp.bottom).offset(16)
-            make.bottom.equalToSuperview().offset(12)
+            make.bottom.equalToSuperview().offset(-12)
             make.leading.equalToSuperview().offset(8)
             make.trailing.equalToSuperview().offset(-8)
         }
@@ -119,7 +150,7 @@ extension HomeViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier:  String(describing: PetsCollectionViewCell.self), for: indexPath) as? PetsCollectionViewCell else { return UICollectionViewCell() }
         
         cell.setUpContent(item: PetsCollectionViewCellItems(title: viewModel.petsData[indexPath.row].name,
-                                                            image: viewModel.petsData[indexPath.row].photoUrls?.last,
+                                                            image: viewModel.petsData[indexPath.row].photoUrls?.first,
                                                             status: viewModel.petStatus,
                                                             indexPath: indexPath.row,
                                                             delegate: self))
@@ -130,7 +161,6 @@ extension HomeViewController: UICollectionViewDataSource {
 // MARK: - PetsCollectionViewCellOutputProtocol
 extension HomeViewController: PetsCollectionViewCellOutputProtocol {
     func onTappedButton(indexPath: Int?) {
-        self.toastMessage("Pet has been added to cart")
         viewModel.saveCartsData(index: indexPath)
     }
 }

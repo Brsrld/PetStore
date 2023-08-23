@@ -14,4 +14,5 @@ enum CartViewStates: ViewStateProtocol {
     case success
     case error(error: String)
     case empty
+    case readDataSuccess
 }

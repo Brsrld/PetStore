@@ -12,7 +12,7 @@ protocol CartViewModelProtocol {
     var cartPets: [PetModel] { get set }
     var petID: Int? { get set }
     func readData()
-    func placeOrder() 
+    func placeOrder()
 }
 
 final class CartViewModel: BaseViewModel<CartViewStates> {
@@ -35,13 +35,17 @@ final class CartViewModel: BaseViewModel<CartViewStates> {
         if let data = UserDefaults.standard.object(forKey: "cartsData") as? Data,
            let pets = try? JSONDecoder().decode([PetModel].self, from: data) {
             self.cartPets = pets
-        } else {
+            changeState(.readDataSuccess)
+        }
+        
+        if self.cartPets.isEmpty {
             changeState(.empty)
         }
     }
     
     private func removeOrderedPets() {
         cartPets = cartPets.filter { $0.id != petID }
+        UserDefaults.standard.removeObject(forKey: "cartsData")
         UserDefaults.standard.set(cartPets.encode(), forKey: "cartsData")
     }
     
@@ -50,7 +54,7 @@ final class CartViewModel: BaseViewModel<CartViewStates> {
                                    petID: petID,
                                    quantity: 1,
                                    shipDate: currentDate(),
-                                   status: "placed",
+                                   status: PetStatus.pending.rawValue,
                                    complete: true)
         changeState(.loading)
         Task { [weak self] in

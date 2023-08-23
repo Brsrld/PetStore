@@ -128,7 +128,7 @@ final class SignUpViewController: UIViewController {
             .sink { [weak self] (state) in
                 switch state {
                 case .error(error: let error):
-                    print(error)
+                    self?.alert(message: error)
                 case .loading:
                     self?.view.activityStartAnimating()
                 case .finished:

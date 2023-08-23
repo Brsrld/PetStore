@@ -11,6 +11,11 @@ import SnapKit
 
 final class ProfileViewController: UIViewController {
     
+    private lazy var emptySuperView: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
     private lazy var firstNameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .gray
@@ -86,7 +91,7 @@ final class ProfileViewController: UIViewController {
             .sink { [weak self] (state) in
                 switch state {
                 case .error(error: let error):
-                    print(error)
+                    self?.alert(message: error)
                 case .loading:
                     self?.view.activityStartAnimating()
                 case .finished:
@@ -98,6 +103,9 @@ final class ProfileViewController: UIViewController {
                     self?.viewModel.getUserData()
                 case .logoutSuccess:
                     self?.coordinator.navigationController?.popToRootViewController(animated: true)
+                case .empty:
+                    self?.prepareEmptyView(isHidden: false)
+                    self?.visibilities(isHidden: true)
                 }
             }.store(in: &cancellables)
     }
@@ -139,7 +147,10 @@ final class ProfileViewController: UIViewController {
         guard let firstname = viewModel.userData?.firstName,
               let lastName = viewModel.userData?.lastName,
               let email = viewModel.userData?.email,
-              let phone = viewModel.userData?.phone else { return }
+              let phone = viewModel.userData?.phone else { return
+            
+            viewModel.changeEmpty()
+        }
         
         firstNameLabel.text = "Firstname: \(firstname)"
         lastNameLabel.text = "Lastname: \(lastName)"
@@ -147,11 +158,46 @@ final class ProfileViewController: UIViewController {
         phoneLabel.text = "Phone Number: \(phone)"
     }
     
+    private func visibilities(isHidden: Bool) {
+        firstNameLabel.isHidden = isHidden
+        lastNameLabel.isHidden = isHidden
+        emailLabel.isHidden = isHidden
+        phoneLabel.isHidden = isHidden
+        logoutButton.isHidden = isHidden
+    }
+    
+    private func prepareEmptyView(isHidden: Bool) {
+        let item = EmptyViewItems(title: "User data could not load",
+                                  image: "person",
+                                  buttonName: "Exit",
+                                  buttonType: .withButton,
+                                  delegate: self)
+        
+        let emptyView = EmptyView(item: item)
+        
+        self.emptySuperView.addSubview(emptyView)
+        view.addSubview(emptySuperView)
+        
+        emptySuperView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.width.equalToSuperview().dividedBy(2)
+            make.height.equalToSuperview().dividedBy(6)
+        }
+        
+        emptyView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.width.equalTo(emptySuperView.snp.width)
+            make.height.equalTo(emptySuperView.snp.height)
+        }
+        
+        emptySuperView.isHidden = isHidden
+    }
+    
     private func prepareButton() {
         view.addSubview(logoutButton)
         logoutButton.addTarget(self,
-                                  action: #selector(buttonAction),
-                                  for: .touchUpInside)
+                               action: #selector(buttonAction),
+                               for: .touchUpInside)
         
         logoutButton.snp.makeConstraints { make in
             make.top.equalTo(phoneLabel.snp.bottom).offset(8)
@@ -166,3 +212,10 @@ final class ProfileViewController: UIViewController {
         viewModel.logOut()
     }
 }
+
+extension ProfileViewController:EmptyViewOutputProtocol {
+    func onTappedButton() {
+        viewModel.logOut()
+    }
+}
+    

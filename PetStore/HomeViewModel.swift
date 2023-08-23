@@ -36,13 +36,13 @@ final class HomeViewModel: BaseViewModel<HomeViewStates> {
         })
         
         if condition {
-            petsData[index].quantitiy! += 1
+            changeState(.error(error: "Already added"))
         } else {
-            petsData[index].quantitiy = 0
             cartPets.append(petsData[index])
-        }
-        
-        UserDefaults.standard.set(cartPets.encode(), forKey: "cartsData")
+            petsData.remove(at: index)
+            UserDefaults.standard.set(cartPets.encode(), forKey: "cartsData")
+            changeState(.successAddedCart)
+        } 
     }
     
     func serviceInitialize() {
