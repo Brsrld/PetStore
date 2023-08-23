@@ -155,7 +155,6 @@ final class LoginViewController: UIViewController {
     private func prepareImage() {
         self.view.addSubview(petImage)
         petImage.image = UIImage(named: "loginImage")
-        petImage.backgroundColor = .red
         petImage.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(12)
             make.leading.equalToSuperview().offset(16)

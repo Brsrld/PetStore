@@ -31,22 +31,10 @@ final class HomeViewModel: BaseViewModel<HomeViewStates> {
     
     func saveCartsData(index: Int?) {
         guard let index = index else { return }
-        let condition = cartPets.contains(where: { pet in
-            if pet.id == petsData[index].id {
-               return true
-            } else {
-                return false
-            }
-        })
-        
-        if condition {
-            changeState(.error(error: "Already added"))
-        } else {
-            cartPets.append(petsData[index])
-            petsData.remove(at: index)
-            UserDefaults.standard.set(cartPets.encode(), forKey: "cartsData")
-            changeState(.successAddedCart)
-        } 
+        cartPets.append(petsData[index])
+        petsData.remove(at: index)
+        UserDefaults.standard.set(cartPets.encode(), forKey: "cartsData")
+        changeState(.successAddedCart)
     }
     
     func readData() {
