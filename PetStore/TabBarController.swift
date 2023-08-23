@@ -10,8 +10,8 @@ import UIKit
 final class TabBarController: UITabBarController {
     
     // MARK: - Properties
-    var coordinator: Coordinator
-    var userName: String
+    private var coordinator: Coordinator
+    private var userName: String
     
     // MARK: - Functions
     override func viewDidLoad() {
@@ -49,7 +49,6 @@ final class TabBarController: UITabBarController {
     
     private func setDelegates() {
         self.selectedIndex = 0
-        self.delegate = self
     }
     
     private func setUI() {
@@ -65,10 +64,4 @@ final class TabBarController: UITabBarController {
         
         return nav
     }
-}
-
-
-// MARK: - UITabBarControllerDelegate
-extension TabBarController: UITabBarControllerDelegate {
-    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {}
 }

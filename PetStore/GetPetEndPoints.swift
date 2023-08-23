@@ -8,7 +8,6 @@
 import Foundation
 import Alamofire
 
-
 // MARK: - GetPetEndPoints
 struct GetPetEndPoints: Endpoint  {
     let status: PetStatus

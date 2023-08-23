@@ -212,7 +212,9 @@ final class ProfileViewController: UIViewController {
     }
 }
 
-extension ProfileViewController:EmptyViewOutputProtocol {
+
+// MARK: - EmptyViewOutputProtocol
+extension ProfileViewController: EmptyViewOutputProtocol {
     func onTappedButton() {
         viewModel.logOut()
     }

@@ -17,7 +17,7 @@ final class HomeViewController: UIViewController {
         return collection
     }()
     
-    private let petStatus: UISegmentedControl = {
+    private lazy var petStatus: UISegmentedControl = {
         let segmentedControl = UISegmentedControl(items: ["Avaliable", "Pending", "Sold", "Placed"])
         segmentedControl.selectedSegmentIndex = 0
         segmentedControl.tintColor = .yellow
@@ -25,7 +25,7 @@ final class HomeViewController: UIViewController {
         return segmentedControl
     }()
     
-    private let emptySuperView: UIView = {
+    private lazy var emptySuperView: UIView = {
        let view = UIView()
         return view
     }()

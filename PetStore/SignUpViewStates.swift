@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 // MARK: - SignUpViewStates
 enum SignUpViewStates: ViewStateProtocol {
     case ready

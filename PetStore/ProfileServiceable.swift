@@ -8,7 +8,6 @@
 import Foundation
 import Alamofire
 
-
 // MARK: - CartServiceable
 protocol ProfileServiceable {
     func getUserInfo(userName: String) async -> Result<UserModel, Alamofire.AFError>

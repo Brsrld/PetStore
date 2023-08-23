@@ -17,7 +17,6 @@ protocol SignUpViewModelProtocol {
 
 final class SignUpViewModel: BaseViewModel<SignUpViewStates> {
     // MARK: - Properties
-    
     var userModel: UserModel?
     private var service: SignUpServiceable
     

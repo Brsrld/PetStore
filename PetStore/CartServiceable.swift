@@ -8,7 +8,6 @@
 import Foundation
 import Alamofire
 
-
 // MARK: - CartServiceable
 protocol CartServiceable {
     func placeOrder(placeOrderModel: PlaceOrderModel) async -> Result<UserResponseModel, Alamofire.AFError>

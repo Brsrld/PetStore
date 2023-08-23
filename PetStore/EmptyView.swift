@@ -10,7 +10,7 @@ import SnapKit
 
 final class EmptyView: UIView {
     // MARK: - Peoperties
-    var item: EmptyViewItems
+    private var item: EmptyViewItems
     
     private lazy var image: UIImageView = {
         let image = UIImageView(frame: .zero)
@@ -99,7 +99,7 @@ final class EmptyView: UIView {
     
     }
     
-    func setUpContent() {
+    private func setUpContent() {
         if let image = item.image, let title = item.title {
             self.image.image = UIImage(systemName: image)
             titleLabel.text = title.capitalized
