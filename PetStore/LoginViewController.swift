@@ -11,6 +11,7 @@ import Combine
 
 final class LoginViewController: UIViewController {
     
+    // MARK: - Properties
     private lazy var userNameTextFiled: UITextField = {
         let textFiled = UITextField()
         textFiled.placeholder = "Username"

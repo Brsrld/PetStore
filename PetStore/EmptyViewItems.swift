@@ -8,15 +8,18 @@
 import Foundation
 import UIKit
 
+// MARK: - ButtonType
 enum ButtonType {
     case withButton
     case noButton
 }
 
+// MARK: - EmptyViewOutputProtocol
 protocol EmptyViewOutputProtocol: NSObject {
     func onTappedButton()
 }
 
+// MARK: -Items
 struct EmptyViewItems {
     let title: String?
     let image: String?

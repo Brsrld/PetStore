@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 
+// MARK: - BaseViewModel
 class BaseViewModel<E: ViewStateProtocol> {
     @Published var states: E = .ready
     

@@ -119,6 +119,8 @@ final class CartViewController: UIViewController {
     }
 }
 
+
+// MARK: - UITableViewDataSource
 extension CartViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.cartPets.count
@@ -141,6 +143,7 @@ extension CartViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - CartTableViewCellOutputProtocol
 extension CartViewController: CartTableViewCellOutputProtocol {
     func onTappedButton(indexPath: Int?) {
         guard let index = indexPath else { return }

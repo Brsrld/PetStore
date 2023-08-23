@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: - States
 enum HomeViewStates: ViewStateProtocol {
     case ready
     case loading

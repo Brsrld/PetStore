@@ -11,6 +11,7 @@ import SnapKit
 
 final class ProfileViewController: UIViewController {
     
+    // MARK: - Propesties
     private lazy var emptySuperView: UIView = {
         let view = UIView()
         return view
@@ -98,14 +99,15 @@ final class ProfileViewController: UIViewController {
                     self?.view.activityStopAnimating()
                 case .ready:
                     self?.view.backgroundColor = .white
-                    self?.prepareLabels()
-                    self?.prepareButton()
                     self?.viewModel.getUserData()
                 case .logoutSuccess:
                     self?.coordinator.navigationController?.popToRootViewController(animated: true)
                 case .empty:
                     self?.prepareEmptyView(isHidden: false)
                     self?.visibilities(isHidden: true)
+                case .successFetchData:
+                    self?.prepareLabels()
+                    self?.prepareButton()
                 }
             }.store(in: &cancellables)
     }
@@ -147,10 +149,7 @@ final class ProfileViewController: UIViewController {
         guard let firstname = viewModel.userData?.firstName,
               let lastName = viewModel.userData?.lastName,
               let email = viewModel.userData?.email,
-              let phone = viewModel.userData?.phone else { return
-            
-            viewModel.changeEmpty()
-        }
+              let phone = viewModel.userData?.phone else { return }
         
         firstNameLabel.text = "Firstname: \(firstname)"
         lastNameLabel.text = "Lastname: \(lastName)"

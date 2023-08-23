@@ -8,22 +8,31 @@
 
 import Foundation
 
+// MARK: - ProfileViewModelProtocol
 protocol ProfileViewModelProtocol {
     var statePublisher: Published<ProfileViewStates>.Publisher { get }
     var userData: UserModel? { get }
     func getUserData()
     func logOut()
-    func changeEmpty()
 }
 
 final class ProfileViewModel: BaseViewModel<ProfileViewStates> {
+    
+    // MARK: - Properties
     private let service: ProfileServiceable
     private let userName: String
     var userData: UserModel?
     
+    // MARK: - Functions
     init(service: ProfileServiceable, userName:String) {
         self.service = service
         self.userName = userName
+    }
+    
+    private func nilCheck() {
+        if self.userData?.firstName == nil {
+            changeState(.empty)
+        }
     }
     
     func getUserData() {
@@ -35,14 +44,12 @@ final class ProfileViewModel: BaseViewModel<ProfileViewStates> {
             switch result {
             case .success(let data):
                 self.userData = data
+                nilCheck()
+                self.changeState(.successFetchData)
             case .failure(let failure):
                 self.changeState(.error(error: failure.localizedDescription))
             }
         }
-    }
-    
-    func changeEmpty() {
-        changeState(.empty)
     }
     
     func logOut() {
@@ -61,6 +68,7 @@ final class ProfileViewModel: BaseViewModel<ProfileViewStates> {
     }
 }
 
+// MARK: - ProfileViewModelProtocol
 extension ProfileViewModel: ProfileViewModelProtocol {
     var statePublisher: Published<ProfileViewStates>.Publisher {
         $states

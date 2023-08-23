@@ -10,6 +10,8 @@ import SnapKit
 import Kingfisher
 
 final class CartTableViewCell: UITableViewCell {
+    
+    // MARK: - Properties
     private weak var delegate: CartTableViewCellOutputProtocol?
     private var indexPath: Int?
     
@@ -41,6 +43,7 @@ final class CartTableViewCell: UITableViewCell {
         return button
     }()
     
+    // MARK: - Functions
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUpView()

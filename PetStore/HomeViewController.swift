@@ -51,6 +51,10 @@ final class HomeViewController: UIViewController {
         states()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        viewModel.readData()
+    }
+    
     // MARK: - Custom Functions
     private func states() {
         viewModel.statePublisher

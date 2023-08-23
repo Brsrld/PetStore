@@ -10,6 +10,8 @@ import SnapKit
 import Kingfisher
 
 final class PetsCollectionViewCell: UICollectionViewCell {
+    
+    // MARK: - Properties
     private weak var delegate: PetsCollectionViewCellOutputProtocol?
     private var indexPath: Int?
     
@@ -49,6 +51,7 @@ final class PetsCollectionViewCell: UICollectionViewCell {
         return button
     }()
     
+    // MARK: - Functions
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUpView()

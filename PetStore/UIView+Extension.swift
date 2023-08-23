@@ -26,7 +26,6 @@ extension UIView{
         self.isUserInteractionEnabled = false
         
         backgroundView.addSubview(activityIndicator)
-
         self.addSubview(backgroundView)
     }
 
@@ -36,9 +35,6 @@ extension UIView{
         }
         self.isUserInteractionEnabled = true
     }
-}
-
-extension UIView {
     
     func visiblity(gone: Bool, dimension: CGFloat = 0.0, attribute: NSLayoutConstraint.Attribute = .height) -> Void {
         if let constraint = (self.constraints.filter{$0.firstAttribute == attribute}.first) {

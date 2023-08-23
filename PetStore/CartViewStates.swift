@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: - States
 enum CartViewStates: ViewStateProtocol {
     case ready
     case loading

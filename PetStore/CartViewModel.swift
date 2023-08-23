@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: - CartViewModelProtocol
 protocol CartViewModelProtocol {
     var statePublisher: Published<CartViewStates>.Publisher { get }
     var cartPets: [PetModel] { get set }
@@ -16,6 +17,7 @@ protocol CartViewModelProtocol {
 }
 
 final class CartViewModel: BaseViewModel<CartViewStates> {
+    // MARK: - Propesties
     private let service: CartServiceable
     var cartPets: [PetModel] = []
     var petID: Int?

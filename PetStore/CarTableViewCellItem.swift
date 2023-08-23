@@ -7,10 +7,12 @@
 
 import Foundation
 
+// MARK: - CartTableViewCellOutputProtocol
 protocol CartTableViewCellOutputProtocol: NSObject {
     func onTappedButton(indexPath: Int?)
 }
 
+// MARK: - Items
 struct CarTableViewCellItem {
     let title: String?
     let image: String?

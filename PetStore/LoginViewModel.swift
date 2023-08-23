@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: - LoginViewModelProtocol
 protocol LoginViewModelProtocol {
     var statePublisher: Published<LoginViewStates>.Publisher { get }
     func serviceInit(userName: String, password: String)
@@ -14,8 +15,10 @@ protocol LoginViewModelProtocol {
 }
 
 final class LoginViewModel: BaseViewModel<LoginViewStates> {
+    // MARK: - Properties
     private var service: SignInServiceable
     
+    // MARK: - Functions
     init(service: SignInServiceable) {
         self.service = service
     }
@@ -46,6 +49,8 @@ final class LoginViewModel: BaseViewModel<LoginViewStates> {
     }
 }
 
+
+// MARK: - LoginViewModelProtocol
 extension LoginViewModel: LoginViewModelProtocol {
     var statePublisher: Published<LoginViewStates>.Publisher {
         $states

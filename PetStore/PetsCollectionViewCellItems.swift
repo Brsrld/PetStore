@@ -7,10 +7,12 @@
 
 import Foundation
 
+// MARK: - PetsCollectionViewCellOutputProtocol
 protocol PetsCollectionViewCellOutputProtocol: NSObject {
     func onTappedButton(indexPath: Int?)
 }
 
+// MARK: - Items
 struct PetsCollectionViewCellItems {
     let title: String?
     let image: String?

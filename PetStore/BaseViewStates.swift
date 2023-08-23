@@ -7,14 +7,17 @@
 
 import Foundation
 
+// MARK: - ViewStateProtocol
 protocol ViewStateProtocol {
     static var ready: Self { get }
 }
 
+// MARK: - ViewStatable
 protocol ViewStatable {
     associatedtype ViewState: ViewStatable = DefaultViewState
 }
 
+// MARK: - DefaultViewState
 enum DefaultViewState: ViewStateProtocol {
     case ready
 }

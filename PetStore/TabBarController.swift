@@ -8,9 +8,12 @@
 import UIKit
 
 final class TabBarController: UITabBarController {
+    
+    // MARK: - Properties
     var coordinator: Coordinator
     var userName: String
     
+    // MARK: - Functions
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()

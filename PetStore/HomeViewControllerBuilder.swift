@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+// MARK: - Builder
 enum HomeViewControllerBuilder {
     static func build(coordinator: Coordinator) -> UIViewController {
         let service: HomeViewServiceable = HomeViewService()

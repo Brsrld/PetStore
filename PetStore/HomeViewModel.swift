@@ -7,20 +7,24 @@
 
 import Foundation
 
+// MARK: - HomeViewModelProtocol
 protocol HomeViewModelProtocol {
     var statePublisher: Published<HomeViewStates>.Publisher { get }
     var petsData: [PetModel] { get set }
     var petStatus: PetStatus { get set }
     func serviceInitialize()
     func saveCartsData(index: Int?)
+    func readData()
 }
 
 final class HomeViewModel: BaseViewModel<HomeViewStates> {
+    // MARK: - Properties
     var petsData: [PetModel] = []
     var petStatus: PetStatus = .available
     private var cartPets: [PetModel] = []
     private let service: HomeViewServiceable
     
+    // MARK: - Functions
     init(service: HomeViewServiceable) {
         self.service = service
     }
@@ -43,6 +47,14 @@ final class HomeViewModel: BaseViewModel<HomeViewStates> {
             UserDefaults.standard.set(cartPets.encode(), forKey: "cartsData")
             changeState(.successAddedCart)
         } 
+    }
+    
+    func readData() {
+        if let data = UserDefaults.standard.object(forKey: "cartsData") as? Data,
+           let pets = try? JSONDecoder().decode([PetModel].self, from: data) {
+            self.cartPets.removeAll()
+            self.cartPets = pets
+        }
     }
     
     func serviceInitialize() {

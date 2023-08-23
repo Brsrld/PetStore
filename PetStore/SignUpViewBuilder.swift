@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+// MARK: - SignUpViewBuilder
 enum SignUpViewBuilder {
     static func build(coordinator: Coordinator) -> UIViewController {
         let service: SignUpServiceable = SignUpService()

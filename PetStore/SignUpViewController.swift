@@ -10,8 +10,8 @@ import Combine
 import SnapKit
 
 final class SignUpViewController: UIViewController {
-    // MARK: - UI Properties
     
+    // MARK: - UI Properties
     private lazy var firstNameTextFiled: UITextField = {
         let textFiled = UITextField()
         textFiled.placeholder = "First Name"

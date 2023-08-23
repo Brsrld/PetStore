@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 
 final class EmptyView: UIView {
+    // MARK: - Peoperties
     var item: EmptyViewItems
     
     private lazy var image: UIImageView = {
@@ -36,6 +37,7 @@ final class EmptyView: UIView {
         return button
     }()
     
+    // MARK: - Functions
     init(item: EmptyViewItems) {
         self.item = item
         super.init(frame: CGRectZero)

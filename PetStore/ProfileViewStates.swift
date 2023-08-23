@@ -7,10 +7,12 @@
 
 import Foundation
 
+// MARK: - States
 enum ProfileViewStates: ViewStateProtocol {
     case ready
     case loading
     case finished
+    case successFetchData
     case empty
     case logoutSuccess
     case error(error: String)

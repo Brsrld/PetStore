@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+// MARK: - Builder
 enum ProfileViewControllerBuilder {
     static func build(coordinator: Coordinator, userName: String) -> UIViewController {
         let service: ProfileServiceable = ProfileService()
