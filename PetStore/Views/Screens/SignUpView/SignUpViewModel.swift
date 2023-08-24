@@ -12,7 +12,12 @@ protocol SignUpViewModelProtocol {
     var statePublisher: Published<SignUpViewStates>.Publisher { get }
     var userModel: UserModel? { get set }
     func serviceInit()
-    func errorState()
+    func preparaBody(userName: String?,
+                     firstName: String?,
+                     lastName: String?,
+                     email: String?,
+                     password: String?,
+                     phone: String?)
 }
 
 final class SignUpViewModel: BaseViewModel<SignUpViewStates> {
@@ -27,6 +32,34 @@ final class SignUpViewModel: BaseViewModel<SignUpViewStates> {
     // MARK: - Functions
     func errorState() {
         self.changeState(.error(error: "User info cannot be empty"))
+    }
+    
+    func preparaBody(userName: String?,
+                     firstName: String?,
+                     lastName: String?,
+                     email: String?,
+                     password: String?,
+                     phone: String?) {
+        
+        guard let username = userName,
+              let firstName = firstName,
+              let lastName = lastName,
+              let email = email,
+              let password = password,
+              let phone = phone else {
+                  self.changeState(.error(error: "User info cannot be empty"))
+            return
+        }
+        
+        userModel  = UserModel(id: 0,
+                               username: username,
+                               firstName: firstName,
+                               lastName: lastName,
+                               email: email,
+                               password: password,
+                               phone: phone,
+                               userStatus: 1)
+        
     }
     
     func serviceInit() {

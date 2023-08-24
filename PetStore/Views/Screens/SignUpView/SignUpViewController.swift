@@ -217,24 +217,13 @@ final class SignUpViewController: UIViewController {
     
     @objc
    private func signUpButtonAction() {
-       guard let username = userNameTextfiled.text,
-             let firstName = userNameTextfiled.text,
-             let lastName = userNameTextfiled.text,
-             let email = userNameTextfiled.text,
-             let password = userNameTextfiled.text,
-             let phone = userNameTextfiled.text else {
-           viewModel.errorState()
-           return
-       }
+       viewModel.preparaBody(userName: userNameTextfiled.text,
+                             firstName: firstNameTextFiled.text,
+                             lastName: lastNameTextfiled.text,
+                             email: emailTextfiled.text,
+                             password: passwordTextfiled.text,
+                             phone: phoneTextfiled.text)
        
-       viewModel.userModel  = UserModel(id: 0,
-                                        username: username,
-                                        firstName: firstName,
-                                        lastName: lastName,
-                                        email: email,
-                                        password: password,
-                                        phone: phone,
-                                        userStatus: 1)
        viewModel.serviceInit()
    }
 }
